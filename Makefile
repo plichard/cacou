@@ -1,2 +1,2 @@
 all:
-	ooc -sourcepath=.:/media/shared/dev/ooc-gtk:/media/shared/dev/ooc-gdk:/media/shared/dev/ooc-cairo main.ooc
+	ooc -sourcepath=.:../ooc-gtk:../ooc-gdk:../ooc-cairo main.ooc
