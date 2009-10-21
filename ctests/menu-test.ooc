@@ -1,9 +1,8 @@
 use gtk
+import structs/ArrayList
 import gtk/[Gtk,Window,Type,AccelGroup,ItemFactory,Container,VBox]
 
-g_print: extern func (String, ...)
 exit: extern func
-
 
 main: func {
 	win := Window new("Item Factory") .connect("delete_event", exit)
@@ -13,10 +12,9 @@ main: func {
 	win add(box)
 	
 	
-	
 	menuItems := [	ItemFactoryEntry new( "/_File",         null,         null, 0, "<Branch>" ),
 					ItemFactoryEntry new( "/File/_New",     "<control>N", null, 0, null ),
-					ItemFactoryEntry new( "/File/_Open",    "<control>O", null, 0, null ),
+					ItemFactoryEntry new( "/File/_Open",    "<control>O", func { printf("Hello, world!\n") }, 0, null ),
 					ItemFactoryEntry new( "/File/_Save",    "<control>S", null, 0, null ),
 					ItemFactoryEntry new( "/File/Save _As", null,         null, 0, null ),
 					ItemFactoryEntry new( "/File/sep1",     null,         null, 0, "<Separator>" ),
@@ -25,12 +23,12 @@ main: func {
 					ItemFactoryEntry new( "/Options/Test",  null,         null, 0, null ),
 					ItemFactoryEntry new( "/_Help",         null,         null, 0, "<LastBranch>" ),
 					ItemFactoryEntry new( "/_Help/About",   null,         null, 0, null )	
-				] as ItemFactoryEntry[]
+				] as ArrayList<ItemFactoryEntry>
 	
 	accelg := AccelGroup new()
 	
-	factory := ItemFactory new(Types menuBar,"<main>",accelg)
-	factory createItems(11,menuItems,null)
+	factory := ItemFactory new(Types menuBar, "<main>", accelg)
+	factory createItems(menuItems)
 	menubar := factory getWidget("<main>")
 	
 	win addAccelGroup(accelg)
