@@ -5,8 +5,8 @@ OOC_FLAGS+=-noclean -driver=sequence -v
 
 all: menu
 	
-menu: menu_c menu_ooc menu_glade_c
-	@echo "OK, the 2 versions compiled"
+menu: menu_c menu_ooc menu_glade_c menu_glade_ooc
+	@echo "OK, the 4 versions compiled"
 
 menu_c:
 	${CC} ${LIBS} ${CFLAGS} menu-test.c -o menu-test-c.x
@@ -17,3 +17,10 @@ menu_glade_c:
 menu_ooc:
 	ooc -sourcepath=.:../../ooc-gtk:../../ooc-gdk ${OOC_FLAGS} menu-test.ooc && \
 	mv menu-test menu-test-ooc.x
+
+menu_glade_ooc:
+	ooc -sourcepath=.:../../ooc-gtk:../../ooc-gdk:../../ooc-glade ${OOC_FLAGS} menu-test-glade.ooc && \
+	mv menu-test-glade menu-test-glade-ooc.x
+
+clean:
+	rm -rf *.x ooc_tmp
