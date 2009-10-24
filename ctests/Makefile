@@ -19,7 +19,7 @@ menu_ooc:
 	mv menu-test menu-test-ooc.x
 
 menu_glade_ooc:
-	ooc -sourcepath=.:../../ooc-gtk:../../ooc-gdk:../../ooc-glade ${OOC_FLAGS} menu-test-glade.ooc && \
+	ooc -g -nolines -sourcepath=.:../../ooc-gtk:../../ooc-gdk:../../ooc-glade ${OOC_FLAGS} menu-test-glade.ooc && \
 	mv menu-test-glade menu-test-glade-ooc.x
 	
 tutorial: tutorial.c
