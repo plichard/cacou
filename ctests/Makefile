@@ -21,6 +21,10 @@ menu_ooc:
 menu_glade_ooc:
 	ooc -sourcepath=.:../../ooc-gtk:../../ooc-gdk:../../ooc-glade ${OOC_FLAGS} menu-test-glade.ooc && \
 	mv menu-test-glade menu-test-glade-ooc.x
+	
+tutorial: tutorial.c
+	gcc -Wall -g -o tutorial.x tutorial.c `pkg-config --cflags --libs gtk+-2.0` -export-dynamic && \
+	gtk-builder-convert glade-1.glade glade-1.xml
 
 clean:
 	rm -rf *.x ooc_tmp

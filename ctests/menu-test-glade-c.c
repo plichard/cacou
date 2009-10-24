@@ -5,6 +5,10 @@ void some_signal_handler_func(GtkWidget *widget, gpointer user_data) {
   /* do something useful here */
 }
 
+void on_main_menu_open_activate (GtkWidget *widget, gpointer user_data){
+	printf("Get [OPEN] signal!!!\n");
+}
+
 int main(int argc, char *argv[]) {
     GladeXML *xml;
 

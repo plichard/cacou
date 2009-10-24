@@ -5,6 +5,10 @@ someSignalHandler: func (widget: Widget, userData: GPointer) {
   /* do something useful here */
 }
 
+on_main_menu_open_activate: func (widget: Widget, userData: GPointer){
+	printf("Get [OPEN] signal!!!\n");
+}
+
 main: func (argc : Int, argv: String*) {
     
     Gtk init(argc&, argv&)
