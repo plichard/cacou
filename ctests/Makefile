@@ -5,14 +5,15 @@ OOC_FLAGS+=-noclean -driver=sequence -v
 
 all: menu
 	
-menu: menu_c menu_ooc menu_glade_c menu_glade_ooc
+#menu: menu_c menu_ooc menu_glade_c menu_glade_ooc
+menu: menu_glade_c
 	@echo "OK, the 4 versions compiled"
 
 menu_c:
 	${CC} ${LIBS} ${CFLAGS} menu-test.c -o menu-test-c.x
 	
 menu_glade_c:
-	${CC} ${LIBS} ${CFLAGS} menu-test-glade-c.c -o menu-test-glade-c.x
+	gcc -Wall -g -o menu-test-glade-c.x menu-test-glade-c.c `pkg-config --cflags --libs gtk+-2.0 libglade-2.0 goocanvas` -export-dynamic
 
 menu_ooc:
 	ooc -sourcepath=.:../../ooc-gtk:../../ooc-gdk ${OOC_FLAGS} menu-test.ooc && \

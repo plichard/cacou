@@ -5,6 +5,8 @@
   <widget class="GtkWindow" id="window1">
     <property name="visible">True</property>
     <property name="title" translatable="yes">Cacou</property>
+    <property name="default_width">800</property>
+    <property name="default_height">600</property>
     <signal name="delete_event" handler="on_window1_delete_event"/>
     <child>
       <widget class="GtkVBox" id="vbox1">
@@ -27,6 +29,7 @@
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_file_new_activate"/>
                       </widget>
                     </child>
                     <child>
@@ -35,7 +38,7 @@
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
-                        <signal name="activate" handler="on_main_menu_open_activate"/>
+                        <signal name="activate" handler="on_file_open_activate"/>
                       </widget>
                     </child>
                     <child>
@@ -60,12 +63,21 @@
                       </widget>
                     </child>
                     <child>
+                      <widget class="GtkImageMenuItem" id="file_close">
+                        <property name="label">gtk-close</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_file_close_activate"/>
+                      </widget>
+                    </child>
+                    <child>
                       <widget class="GtkImageMenuItem" id="file_quit">
                         <property name="label">gtk-quit</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
-                        <signal name="activate" handler="on_window_destroy"/>
+                        <signal name="activate" handler="on_file_quit_activate"/>
                       </widget>
                     </child>
                   </widget>
@@ -169,7 +181,6 @@
               <widget class="GtkNotebook" id="notebook1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="scrollable">True</property>
                 <child>
                   <widget class="GtkTextView" id="textview1">
                     <property name="visible">True</property>
@@ -269,7 +280,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="yalign">0.49000000953674316</property>
-                <signal name="clicked" handler="on_file_chooser_open_clicked"/>
+                <signal name="clicked" handler="on_file_chooser_cancel_clicked"/>
               </widget>
               <packing>
                 <property name="expand">False</property>
@@ -283,7 +294,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_file_chooser_cancel_clicked"/>
+                <signal name="clicked" handler="on_file_chooser_open_clicked"/>
               </widget>
               <packing>
                 <property name="expand">False</property>
