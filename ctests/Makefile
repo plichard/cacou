@@ -12,8 +12,13 @@ menu: menu_glade_c
 menu_c:
 	${CC} ${LIBS} ${CFLAGS} menu-test.c -o menu-test-c.x
 	
-menu_glade_c:
-	gcc -Wall -g -o menu-test-glade-c.x menu-test-glade-c.c `pkg-config --cflags --libs gtk+-2.0 libglade-2.0 goocanvas` -export-dynamic
+menu_glade_c: file_editor menu-test-glade-c.c
+	gcc -Wall -std=c99 -O3 -o  menu-test-glade-c.x menu-test-glade-c.c FileEditor.o \
+	`pkg-config --cflags --libs gtk+-2.0 libglade-2.0 goocanvas` -export-dynamic
+
+file_editor: FileEditor.c FileEditor.h
+	gcc FileEditor.c -c  -O3 -std=c99 -o FileEditor.o \
+	`pkg-config --cflags --libs gtk+-2.0 libglade-2.0 goocanvas` -export-dynamic
 
 menu_ooc:
 	ooc -sourcepath=.:../../ooc-gtk:../../ooc-gdk ${OOC_FLAGS} menu-test.ooc && \
