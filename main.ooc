@@ -1,4 +1,4 @@
-use gtk,gdk
+use gtk, cairo
 import cairo/Cairo
 import gtk/[Gtk, Window, Button]
 

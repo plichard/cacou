@@ -19,7 +19,7 @@ main: func (argc : Int, argv: String*) {
 
     /* load the interface */
     xml := XML new("glade-1.glade", null, null)
-    window = XML getWidget("window1")
+    window = xml getWidget("window1")
 
     /* connect the signals in the interface */
     xml signalAutoConnect()
